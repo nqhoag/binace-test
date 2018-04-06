@@ -1,4 +1,0 @@
-
-[INFO] Start for from Fri, 06 Apr 2018 10:37:24 GMT to Fri, 06 Apr 2018 23:59:59 GMT
-[INFO] CTRETH has decrease > 9%
-[INFO] CTRBTC has decrease > 9%

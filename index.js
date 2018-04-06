@@ -44,12 +44,12 @@ function buy(coin_name, quantity, type)
 {
 	binance.marketBuy(coin_name, quantity, (error, response) => {
 		if (error) {
-			logFile.write('\n[ERROR] ' + error);
+			logFile.write('<br/>[ERROR] ' + error);
 		}
 
 	  	buyHistory[coin_name] = type;
 
-	  	logFile.write('\n[INFO] ' + "Bought " + coin_name + " at " + type + "%.");
+	  	logFile.write('<br/>[INFO] ' + "Bought " + coin_name + " at " + type + "%.");
 	});
 }
 
@@ -68,7 +68,7 @@ function check_decrease(coin_name, change, open, currentType)
 			// let quantity = parseInt(main_price/price);
 			// buy(coin_name, quantity, percent);
 
-			logFile.write('\n[INFO] ' + coin_name + " has decrease > " + percent + "%");
+			logFile.write('<br/>[INFO] ' + coin_name + " has decrease > " + percent + "%");
 			// console.log("Notice: ", coin_name, " has decrease > ", percent, "%")
 			buyHistory[coin_name] = 40;
 
@@ -95,7 +95,7 @@ function check_coin(coin_name, main_price)
 			  		if (currentTime !== closeTime) {
 			  			currentTime = closeTime;
 			  			buyHistory = [];
-			  			logFile.write('\n[INFO] ' + "Start for from " + new Date().toUTCString() + " to " + new Date(closeTime).toUTCString());
+			  			logFile.write('<br/>[INFO] ' + "Start for from " + new Date().toUTCString() + " to " + new Date(closeTime).toUTCString());
 			  			// console.log("Start for from ", new Date().toUTCString() , " to ", new Date(closeTime).toUTCString());
 			  		}
 
