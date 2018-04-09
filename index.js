@@ -32,13 +32,6 @@ binance.websockets.prevDay(false, (data) => {
 		/*
 		*  Clear history and set new current Time
 		*/
-
-		// let currentTime = new Date()
-		// let day = currentTime.getDate()
-		// let month = currentTime.getMonth() + 1
-		// let year = currentTime.getFullYear()
-		// let currentDate = year + "/" + month + "/" + day;
-
 		let eventTime = new Date(data.closeTime);
 		let day = eventTime.getDate()
 		let month = eventTime.getMonth() + 1
@@ -58,23 +51,23 @@ binance.websockets.prevDay(false, (data) => {
 			currentType = buyHistory[coin_name];
 		}
 
-		check_decrease(coin_name, data.percentChange, currentType);
+		check_decrease(coin_name, - data.percentChange, currentType);
 
-		if (data.percentChange > 99 && currentType < 99) {
+		if ( - data.percentChange > 99 && currentType < 99) {
 			let price = open - (99/100*open);
 			let quantity = parseInt(main_price/price) + 1;
 			buy(coin_name, quantity, price, 99);
 			return;
 		}
 
-		if (data.percentChange > 90 && currentType < 90) {
+		if ( - data.percentChange > 90 && currentType < 90) {
 			let price = open - (90/100*open);
 			let quantity = parseInt(main_price/price) + 1;
 			buy(coin_name, quantity, price, 90);
 			return;
 		}
 
-		if (data.percentChange > 50 && currentType < 50) {
+		if ( - data.percentChange > 50 && currentType < 50) {
 			let price = open - (50/100*open);
 			let quantity = parseInt(main_price/price) + 1;
 			buy(coin_name, quantity, price, 50);
@@ -109,7 +102,7 @@ function check_decrease(coin_name, change, currentType)
 			// buy(coin_name, quantity, percent);
 
 			logFile.write('<br/>[INFO] ' + coin_name + " has decrease > " + percent + "%");
-			console.log("Notice: ", coin_name, " has decrease > ", change, "%")
+			// console.log("Notice: ", coin_name, " has decrease > ", change, "%")
 			buyHistory[coin_name] = percent;
 			return;
 		}
