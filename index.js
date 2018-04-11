@@ -53,11 +53,11 @@ function main(){
 			let year = eventTime.getFullYear()
 			let eventDate = year + "/" + month + "/" + day;
 
-			if (currentTime !== eventDate) {
+			if (currentTime > eventDate) {
 
 				currentTime = eventDate;
 				buyHistory = [];
-				logFile.write('<br/>[INFO] ' + "Start for from " + new Date().toUTCString() + " to " + new Date(data.closeTime).toUTCString());
+				logFile.write('<br/>[INFO] ' + "Start for " + eventDate);
 				// console.log("Start for from ", new Date().toUTCString() , " to ", new Date(closeTime).toUTCString());
 			}
 
