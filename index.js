@@ -78,27 +78,38 @@ function main(coinName){
                 if ( - percentChange > 99 && currentType < 99) {
                     let price = open - (99/100*open);
                     let quantity = parseInt(main_price/price);
-                    buy(coin_name, quantity, price, 99);
+                    buy(main_coin, coin_name, quantity, price, 99);
                     return;
                 }
                if ( - percentChange > 90 && currentType < 90) {
                        let price = open - (90/100*open);
                        let quantity = parseInt(main_price/price);
-                       buy(coin_name, quantity, price, 90);
+                       buy(main_coin, coin_name, quantity, price, 90);
                        return;
                }
                if ( - percentChange > 50 && currentType < 50) {
                        let price = open - (50/100*open);
                        let quantity = parseInt(main_price/price);
-                       buy(coin_name, quantity, price, 50);
+                       buy(main_coin, coin_name, quantity, price, 50);
                        return;
                }
             }
         });
 }
 
-function buy(coin_name, quantity , price, type)
+function buy(main_coin, coin_name, quantity , price, type)
 {
+      if (main_coin == "BTC") {
+                price = price.toFixed(8);
+                 // Buy 0.002 BTC
+            } else if (main_coin == "ETH") {
+                price = price.toFixed(8);
+            } else if (main_coin == "BNB") {
+                price = price.toFixed(6);
+            } else {
+                return;
+            }
+  
         binance.buy(coin_name, quantity, price, {type:'LIMIT'}, (error, response) => {
                 if (error) {
                         errorlog.write('<br/>[INFO] ' + coin_name + ", " +  quantity + ", " + price);
