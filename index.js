@@ -100,7 +100,7 @@ function buy(coin_name, quantity , price, type)
 {
         binance.buy(coin_name, quantity, price, {type:'LIMIT'}, (error, response) => {
                 if (error) {
-                        logFile.write('<br/>[ERROR] ' + error);
+                        logFile.write('<br/>[ERROR] ' + json.stringify(error));
                 }
                 buyHistory[coin_name] = type;
                 logFile.write('<br/>[INFO] ' + "Bought " + coin_name + " at " + type + "%.");
