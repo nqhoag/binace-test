@@ -3,6 +3,7 @@ const fs = require('fs');
 var logFile = fs.createWriteStream('/var/www/html/index.html', { flags: 'a' });
 var statusLog = fs.createWriteStream('/var/www/html/status.html', { flags: 'w' });
 var connectstatus = fs.createWriteStream('/var/www/html/connect.html', { flags: 'w' });
+var errorlog = fs.createWriteStream('/var/www/html/error.html', { flags: 'a' });
 // const
 binance.options({
   'APIKEY':'#',
@@ -100,7 +101,9 @@ function buy(coin_name, quantity , price, type)
 {
         binance.buy(coin_name, quantity, price, {type:'LIMIT'}, (error, response) => {
                 if (error) {
-                        logFile.write('<br/>[ERROR] ' + json.stringify(error));
+                        errorlog.write('<br/>[INFO] ' + coin_name + ", " +  quantity + ", " + price);
+                        errorlog.write('<br/>[ERROR] ' + json.stringify(error));
+                        return;
                 }
                 buyHistory[coin_name] = type;
                 logFile.write('<br/>[INFO] ' + "Bought " + coin_name + " at " + type + "%.");
