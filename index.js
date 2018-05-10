@@ -77,19 +77,19 @@ function main(coinName){
                 check_decrease(coin_name, - percentChange, currentType);
                 if ( - percentChange > 99 && currentType < 99) {
                     let price = open - (99/100*open);
-                    let quantity = parseInt(main_price/price);
+                    let quantity = (main_price/price) > 1 ? parseInt(main_price/price) : (main_price/price).toFixed(5);
                     buy(main_coin, coin_name, quantity, price, 99);
                     return;
                 }
                if ( - percentChange > 90 && currentType < 90) {
                        let price = open - (90/100*open);
-                       let quantity = parseInt(main_price/price);
+                       let quantity = (main_price/price) > 1 ? parseInt(main_price/price) : (main_price/price).toFixed(5);
                        buy(main_coin, coin_name, quantity, price, 90);
                        return;
                }
                if ( - percentChange > 50 && currentType < 50) {
                        let price = open - (50/100*open);
-                       let quantity = parseInt(main_price/price);
+                       let quantity = (main_price/price) > 1 ? parseInt(main_price/price) : (main_price/price).toFixed(5);
                        buy(main_coin, coin_name, quantity, price, 50);
                        return;
                }
