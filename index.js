@@ -68,6 +68,8 @@ function main(coinName){
                     currentTime = time;
                     buyHistory = [];
                     logFile.write('<br/>[INFO] ' + "Start for " + (new Date(currentTime)).toLocaleDateString());
+                } else if (currentTime > time) {
+                    return;
                 }
                 let currentType = 0;
                 if (buyHistory[coin_name] !== undefined) {
